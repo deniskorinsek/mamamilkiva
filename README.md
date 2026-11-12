@@ -3,11 +3,14 @@
 Promotional website for the MamaMilkiva Android app, built for GitHub Pages.
 Plain HTML, CSS and JavaScript: no build step and no dependencies.
 
-| Page | Slovenian | English |
-|---|---|---|
-| Landing page | `index.html` | `en/index.html` |
-| Privacy policy | `zasebnost/index.html` | `en/privacy/index.html` |
-| Not found | `404.html` (both languages) | |
+| Page | Slovenian | English | Other app languages |
+|---|---|---|---|
+| Landing page | `index.html` | `en/index.html` | – (links go to the English page) |
+| Privacy policy | `zasebnost/index.html` | `en/privacy/index.html` | `<code>/privacy/index.html` for bg, bs, cs, de, el, es, fr, hr, hu, it, pl, pt-br, ro, sk, sr (Latin), tr |
+| Not found | `404.html` (both languages) | | |
+
+The app opens the privacy page in its own language (`privacy_policy_url` in each `values-*/strings.xml` of the app; Serbian Cyrillic uses the Latin `sr` page, every other language the English page).
+Every privacy page lists all languages in its footer and carries the full set of `hreflang` alternates (`x-default` = English); `sitemap.xml` has the same set.
 
 The look follows `../designs/` (direction "Objem"): Young Serif + Figtree, rose / sage / peach / plum palette, the app's own illustrations and screens.
 
@@ -46,7 +49,7 @@ Later changes: commit and push to `main`; Pages redeploys in a minute or two. `.
 | App repository | `deniskorinsek/MamaMilkiva` (private) | not linked from the site; downloads go through Google Play, questions to the contact email |
 | Site URL | `https://deniskorinsek.github.io/MamaMilkiva-Website/` | canonical, hreflang, Open Graph, `sitemap.xml`, `robots.txt` |
 | Publisher and contact | Denis Korinsek, korinsekdenis+mamamilkiva@gmail.com | privacy pages |
-| Privacy policy effective date | 12 November 2026 | privacy pages (update it whenever the policy changes) |
+| Privacy policy effective date | 12 November 2026 | all 18 privacy pages (update it whenever the policy changes) |
 | Base path of the 404 page | `<base href="/MamaMilkiva-Website/">` | `404.html` |
 
 Moving to a custom domain or renaming the repository: replace `deniskorinsek.github.io/MamaMilkiva-Website` in all files, and set the 404 base to `/` (custom domain) or `/<new name>/`.
@@ -56,7 +59,7 @@ Moving to a custom domain or renaming the repository: replace `deniskorinsek.git
 - Every store link points to `https://play.google.com/store/apps/details?id=si.mamamilkiva.app` (the `applicationId` from `app/build.gradle.kts`), with `&hl=sl` or `&hl=en`. The links work as soon as the store listing is live.
 - The QR code in the download section (shown on wide screens) encodes the same URL without `hl`. Regenerate it if the package name changes, e.g. with `segno` and `error="q"`, and keep the small logo in the middle.
 - The store button is text only. To use Google's official badge instead (a Slovenian version exists), download it from <https://play.google.com/intl/en_us/badges/>, follow its guidelines, and put the image inside the `.store-btn` links.
-- In the Play Console, use the privacy page as the privacy policy URL: `https://deniskorinsek.github.io/MamaMilkiva-Website/zasebnost/` (English: `/en/privacy/`).
+- In the Play Console, use the privacy page as the privacy policy URL: `https://deniskorinsek.github.io/MamaMilkiva-Website/zasebnost/` (English: `/en/privacy/`, other languages: `/<code>/privacy/`). Play has one privacy URL per app, so the Slovenian or English one is enough there; the app itself links the page in the user's language.
 
 ## Also needed
 
@@ -86,10 +89,11 @@ MamaMilkiva-Website/
 ├── index.html, 404.html, site.webmanifest, sitemap.xml, robots.txt, .nojekyll
 ├── zasebnost/index.html
 ├── en/index.html, en/privacy/index.html
+├── <code>/privacy/index.html  bg bs cs de el es fr hr hu it pl pt-br ro sk sr tr
 └── assets/
     ├── css/styles.css         tokens, components, pages
     ├── js/main.js             motion and small enhancements
-    ├── fonts/                 Figtree + Young Serif (WOFF2 subsets, SIL OFL 1.1)
+    ├── fonts/                 Figtree + Young Serif (WOFF2 subsets, SIL OFL 1.1; *-ext.ttf full fonts load only for Romanian ș ț)
     └── img/
         ├── screens/           app screens (WebP)
         ├── illustrations/     animated/ and static/ SVGs from ../designs
@@ -97,4 +101,4 @@ MamaMilkiva-Website/
         └── og-sl.png, og-en.png   link previews (1200×630)
 ```
 
-Both languages mirror each other; when you change one page, change its counterpart too.
+Slovenian and English mirror each other; when you change one page, change its counterpart too. When the privacy policy changes, update all 18 privacy pages and their effective date (Greek and Cyrillic text uses the system fallback fonts, the brand fonts cover Latin only).

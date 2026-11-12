@@ -13,6 +13,13 @@
 @font-face { font-family: "Figtree"; src: url("../fonts/figtree-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 @font-face { font-family: "Figtree"; src: url("../fonts/figtree-800.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
 @font-face { font-family: "Young Serif"; src: url("../fonts/young-serif-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+/* Romanian ș ț (comma below) are not in the WOFF2 subsets; these full fonts load only on pages that use them. */
+@font-face { font-family: "Figtree"; src: url("../fonts/figtree-400-ext.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0218-021B; }
+@font-face { font-family: "Figtree"; src: url("../fonts/figtree-500-ext.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; unicode-range: U+0218-021B; }
+@font-face { font-family: "Figtree"; src: url("../fonts/figtree-600-ext.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0218-021B; }
+@font-face { font-family: "Figtree"; src: url("../fonts/figtree-700-ext.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; unicode-range: U+0218-021B; }
+@font-face { font-family: "Figtree"; src: url("../fonts/figtree-800-ext.ttf") format("truetype"); font-weight: 800; font-style: normal; font-display: swap; unicode-range: U+0218-021B; }
+@font-face { font-family: "Young Serif"; src: url("../fonts/young-serif-400-ext.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0218-021B; }
 
 /* ---------- Tokens ---------- */
 :root {
@@ -454,6 +461,11 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: from
 }
 .lang-switch a:hover span { background: rgba(59, 42, 46, .07); }
 .lang-switch a[aria-current="page"] span { background: var(--ink); color: var(--cream); font-weight: 800; }
+@media (max-width: 420px) {
+  /* Translated privacy pages show three languages (SL, EN, own); keep them inside the 360–414 px header. */
+  .lang-switch a { min-width: 36px; }
+  .lang-switch span { padding: 7px 8px; }
+}
 
 @media (min-width: 1080px) {
   .site-nav { display: block; margin-right: 8px; }
@@ -1631,7 +1643,9 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: from
 @media (min-width: 960px) {
   .page-hero__grid { grid-template-columns: minmax(0, 1fr) 320px; }
 }
-.page-hero__copy { max-width: 760px; display: flex; flex-direction: column; gap: 14px; }
+.page-hero__copy { max-width: 760px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+/* Long single words (DE "Datenschutzerklärung") must wrap on phones instead of being cut off. */
+.page-hero h1 { overflow-wrap: break-word; hyphens: auto; }
 .back-link {
   align-self: flex-start;
   min-height: 44px;
