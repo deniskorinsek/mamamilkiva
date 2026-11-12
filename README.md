@@ -46,7 +46,7 @@ Later changes: commit and push to `main`; Pages redeploys in a minute or two. `.
 | App repository | `deniskorinsek/MamaMilkiva` (private) | not linked from the site; downloads go through Google Play, questions to the contact email |
 | Site URL | `https://deniskorinsek.github.io/MamaMilkiva-Website/` | canonical, hreflang, Open Graph, `sitemap.xml`, `robots.txt` |
 | Publisher and contact | Denis Korinsek, korinsekdenis+mamamilkiva@gmail.com | privacy pages |
-| Privacy policy effective date | 14 October 2026 | privacy pages (update it whenever the policy changes) |
+| Privacy policy effective date | 12 November 2026 | privacy pages (update it whenever the policy changes) |
 | Base path of the 404 page | `<base href="/MamaMilkiva-Website/">` | `404.html` |
 
 Moving to a custom domain or renaming the repository: replace `deniskorinsek.github.io/MamaMilkiva-Website` in all files, and set the 404 base to `/` (custom domain) or `/<new name>/`.
