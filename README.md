@@ -26,18 +26,9 @@ python3 -m http.server 8000
 
 ## Publish on GitHub Pages
 
-This folder is its own repository, `deniskorinsek/MamaMilkiva-Website`, served by GitHub Pages from the root of `main`.
+This folder is its own repository, `deniskorinsek/mamamilkiva`, served by GitHub Pages from the root of `main` at **https://deniskorinsek.github.io/mamamilkiva/**. The local folder keeps its old name, `MamaMilkiva-Website`. (The private app repository was renamed from `MamaMilkiva` to `MamaMilkiva-App` to free the name; GitHub repository names ignore case.)
 
-First time (on the Mac):
-
-```sh
-cd ~/Documents/Workspace/MamaMilkiva/MamaMilkiva-Website
-git init -b main
-git add -A
-git commit -m "MamaMilkiva website"
-~/bin/gh repo create deniskorinsek/MamaMilkiva-Website --public --source=. --push --description "Website for the MamaMilkiva Android app" --homepage https://deniskorinsek.github.io/MamaMilkiva-Website/
-~/bin/gh api -X POST repos/deniskorinsek/MamaMilkiva-Website/pages -f "source[branch]=main" -f "source[path]=/"
-```
+Until 15 November 2026 the site lived at `deniskorinsek.github.io/MamaMilkiva-Website/`. That address is now a redirect-only repository (`deniskorinsek/MamaMilkiva-Website`) that forwards every path to the same path here; keep it, because app build 1.0 (versionCode 1) still links its privacy policy there.
 
 Later changes: commit and push to `main`; Pages redeploys in a minute or two. `.nojekyll` makes Pages serve the files as they are.
 
@@ -45,21 +36,21 @@ Later changes: commit and push to `main`; Pages redeploys in a minute or two. `.
 
 | Setting | Value | Where it appears |
 |---|---|---|
-| Website repository | `deniskorinsek/MamaMilkiva-Website` | this folder |
-| App repository | `deniskorinsek/MamaMilkiva` (private) | not linked from the site; downloads go through Google Play, questions to the contact email |
-| Site URL | `https://deniskorinsek.github.io/MamaMilkiva-Website/` | canonical, hreflang, Open Graph, `sitemap.xml`, `robots.txt` |
+| Website repository | `deniskorinsek/mamamilkiva` | this folder (`MamaMilkiva-Website/`) |
+| App repository | `deniskorinsek/MamaMilkiva-App` (private) | not linked from the site; downloads go through Google Play, questions to the contact email |
+| Site URL | `https://deniskorinsek.github.io/mamamilkiva/` | canonical, hreflang, Open Graph, `sitemap.xml`, `robots.txt` |
 | Publisher and contact | Denis Korinsek, korinsekdenis+mamamilkiva@gmail.com | privacy pages |
 | Privacy policy effective date | 12 November 2026 | all 18 privacy pages (update it whenever the policy changes) |
-| Base path of the 404 page | `<base href="/MamaMilkiva-Website/">` | `404.html` |
+| Base path of the 404 page | `<base href="/mamamilkiva/">` | `404.html` |
 
-Moving to a custom domain or renaming the repository: replace `deniskorinsek.github.io/MamaMilkiva-Website` in all files, and set the 404 base to `/` (custom domain) or `/<new name>/`.
+Moving to a custom domain: replace `https://deniskorinsek.github.io/mamamilkiva/` in all files (and in `privacy_policy_url` of every app language), add a `CNAME` file, and set the 404 base to `/`.
 
 ## Google Play
 
 - Every store link points to `https://play.google.com/store/apps/details?id=si.mamamilkiva.app` (the `applicationId` from `app/build.gradle.kts`), with `&hl=sl` or `&hl=en`. The links work as soon as the store listing is live.
 - The QR code in the download section (shown on wide screens) encodes the same URL without `hl`. Regenerate it if the package name changes, e.g. with `segno` and `error="q"`, and keep the small logo in the middle.
 - The store button is text only. To use Google's official badge instead (a Slovenian version exists), download it from <https://play.google.com/intl/en_us/badges/>, follow its guidelines, and put the image inside the `.store-btn` links.
-- In the Play Console, use the privacy page as the privacy policy URL: `https://deniskorinsek.github.io/MamaMilkiva-Website/zasebnost/` (English: `/en/privacy/`, other languages: `/<code>/privacy/`). Play has one privacy URL per app, so the Slovenian or English one is enough there; the app itself links the page in the user's language.
+- In the Play Console, use the privacy page as the privacy policy URL: `https://deniskorinsek.github.io/mamamilkiva/zasebnost/` (English: `/en/privacy/`, other languages: `/<code>/privacy/`). Play has one privacy URL per app, so the Slovenian or English one is enough there; the app itself links the page in the user's language.
 
 ## Also needed
 

@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://deniskorinsek.github.io/MamaMilkiva-Website/sitemap.xml
+Sitemap: https://deniskorinsek.github.io/mamamilkiva/sitemap.xml
