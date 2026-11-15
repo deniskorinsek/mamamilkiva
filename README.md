@@ -64,7 +64,7 @@ Moving to a custom domain or renaming the repository: replace `deniskorinsek.git
 ## Also needed
 
 - **Review the privacy policy.** It is a draft based on the app's manifest, `MamaMilkiva-Android/docs/PRIVACY_POLICY.md` and GitHub Pages hosting. Update it whenever permissions, storage or distribution change. It is not legal advice.
-- **Screenshots** in `assets/img/screens/` come from `../designs/screens/png/` (WebP, 420 and 786 px wide). Replace them when the app UI changes; keep the file names.
+- **Screenshots** in `assets/img/screens/<sl|en>/` (home, editor, history-stats, history-days, settings; WebP, 420 and 786 px wide) are made from the Play Store screenshots of the current app by `../designs/website/render_website_images.py`, which also renders the link previews `og-sl.png` / `og-en.png` from `../designs/website/og.html`. Re-run it after new store screenshots (`MamaMilkiva-Android/tools/store_screenshots.py`).
 
 ## Motion
 
@@ -95,7 +95,7 @@ MamaMilkiva-Website/
     ├── js/main.js             motion and small enhancements
     ├── fonts/                 Figtree + Young Serif (WOFF2 subsets, SIL OFL 1.1; *-ext.ttf full fonts load only for Romanian ș ț)
     └── img/
-        ├── screens/           app screens (WebP)
+        ├── screens/sl, en/    app screens of the current version (WebP)
         ├── illustrations/     animated/ and static/ SVGs from ../designs
         ├── icons/             app icon, favicons, manifest icons
         └── og-sl.png, og-en.png   link previews (1200×630)

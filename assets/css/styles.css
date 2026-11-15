@@ -466,6 +466,11 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: from
   .lang-switch a { min-width: 36px; }
   .lang-switch span { padding: 7px 8px; }
 }
+@media (max-width: 340px) {
+  .lang-switch a { min-width: 30px; }
+  .lang-switch span { padding: 6px 5px; font-size: 12px; letter-spacing: .02em; }
+  .brand__name { font-size: 18px; }
+}
 
 @media (min-width: 1080px) {
   .site-nav { display: block; margin-right: 8px; }
@@ -666,6 +671,7 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: from
 .phone--peek .phone__frame img,
 .phone--peek .phone__frame::after { border-radius: 12cqi 12cqi 0 0; }
 .phone--peek .phone__frame::after { bottom: 0; }
+@media (min-width: 720px) { .phone--peek-tall { height: 400px; } }
 
 /* ---------- Floating cards (hero) ---------- */
 .float-card {
@@ -876,7 +882,7 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: from
   flex-direction: column;
   gap: 12px;
 }
-.card__peek { flex: 0 0 230px; align-self: flex-end; margin-inline: auto; }
+.card__peek { flex: 0 1 230px; max-width: 100%; align-self: flex-end; margin-inline: auto; }
 
 /* reminders demo (sage card) */
 .reminder-demo { display: flex; align-items: center; gap: 18px; margin: -4px 0 8px; }
@@ -918,6 +924,13 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: from
   transition: left .5s .9s var(--ease-out);
 }
 .js [data-reveal]:not(.is-visible) .mini-switch::after { left: 3px; }
+/* narrow phones: smaller ring so "Pumping 2 h 30 min" fits next to it */
+@media (max-width: 420px) {
+  .reminder-demo { gap: 10px; }
+  .ring { width: 56px; height: 56px; }
+  .mini-settings li { gap: 8px; padding: 9px 10px; font-size: 13px; }
+}
+@media (max-width: 340px) { .ring { display: none; } }
 
 /* history demo (peach card) */
 .history-demo {
@@ -1017,6 +1030,56 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: from
 }
 
 /* encouragement (cream card) */
+/* milk amount demo (cream card): the app's statistics card in miniature */
+.milk-demo {
+  margin-bottom: 10px;
+  padding: 16px 16px 12px;
+  border-radius: 18px;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 1px rgba(176, 85, 102, .08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.milk-demo__stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.milk-demo__stat { min-width: 0; padding: 10px 12px; border-radius: 14px; background: var(--rose-50); }
+.milk-demo__stat span { display: block; font-size: 12px; line-height: 16px; font-weight: 600; color: var(--ink-2); overflow-wrap: anywhere; }
+.milk-demo__stat b { display: block; font-family: var(--font-serif); font-size: 22px; line-height: 28px; font-weight: 400; color: var(--rose-ink); white-space: nowrap; }
+.milk-chart { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; align-items: end; }
+.milk-chart__col { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.milk-chart__val,
+.milk-chart__day { font-size: 10px; line-height: 12px; font-weight: 800; letter-spacing: .04em; color: var(--ink-2); white-space: nowrap; }
+.milk-chart__bar {
+  width: 100%;
+  height: calc(76px * var(--h) / 100);
+  border-radius: 6px;
+  background: var(--rose-100);
+  transform-origin: bottom;
+  transition: transform .7s var(--ease-out);
+  transition-delay: calc(.3s + var(--i, 0) * .07s);
+}
+.milk-chart__bar.is-today { background: var(--rose); }
+.js [data-reveal]:not(.is-visible) .milk-chart__bar { transform: scaleY(0); }
+
+/* languages (rose card) */
+.langs { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.langs li {
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .82);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 700;
+  transition: transform .5s var(--ease-out), opacity .5s;
+  transition-delay: calc(.15s + var(--i, 0) * .035s);
+}
+.langs li.is-current { background: var(--rose); color: #FFFFFF; }
+.js [data-reveal]:not(.is-visible) .langs li { opacity: 0; transform: translateY(8px); }
+
+/* night card: the app's night illustration instead of a phone */
+.card__peek--art { display: flex; justify-content: center; }
+.night-art { width: 230px; height: auto; }
+
 .card--quote { flex-flow: row wrap; align-items: center; gap: 24px 36px; }
 .quote-art { flex: 0 0 auto; width: clamp(190px, 20vw, 240px); margin-inline: auto; }
 .quote { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
@@ -1645,7 +1708,8 @@ a { color: inherit; text-underline-offset: .2em; text-decoration-thickness: from
 }
 .page-hero__copy { max-width: 760px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 /* Long single words (DE "Datenschutzerklärung") must wrap on phones instead of being cut off. */
-.page-hero h1 { overflow-wrap: break-word; hyphens: auto; }
+.page-hero h1,
+.policy h2 { overflow-wrap: break-word; hyphens: auto; }
 .back-link {
   align-self: flex-start;
   min-height: 44px;
